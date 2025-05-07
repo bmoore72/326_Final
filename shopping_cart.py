@@ -4,7 +4,7 @@
 import pandas as pd 
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('your_file.csv')
+df = pd.read_csv('Groceries_dataset.csv')
 
 # Remove duplicate rows
 df.drop_duplicates(inplace=True)
