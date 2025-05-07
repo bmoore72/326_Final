@@ -12,9 +12,11 @@ import pandas as pd
 # Save the DataFrame back to a CSV file
 #df.to_csv('cleaned_groceries.csv', index=False)
 
-df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
+grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
 
 class ShoppingCart:
     "Class that manages a persons shopping cart based on their budget with additional features"
 
-    
+    def __init__(self, grocery_item_df, budget ):
+        
+
