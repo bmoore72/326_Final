@@ -28,16 +28,34 @@ class ShoppingCart:
         self.grocery_item_df = grocery_item_df
         self.budget = budget
         self.cart = []
-        self.price_total = 0.0
         self.wish_list = []
+        self.price_total = 0.0
+       
 
     def add_item(self, item_name):
         """
-        
+        adds item to the cart if it's in stock(in csv file) and within their budget
+        if the item is not found, it gets added to the wishlist
+
+        item_name: name of the item they want to add
+
+        raises ValueError if adding an item exceeds their budget        
         """
+
         row = self.grocery_item_df[self.grocery_item_df['item_description'].str.lower() == item_name.lower()]
-        
+
         if row.empty:
             print(f"{item_name} is out of stock. It will be added to your wish list.")
             self.wish_list.append(item_name)
+
+
+        price = row.loc['Price']
+
+        if self.price_total + price > self.budget:
+            raise ValueError(f"Can not add {item_name} - You are over budget")
+
+        self.cart.append((item_name, price))
+        self.price_total += price
+
+        
 
