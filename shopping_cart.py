@@ -12,5 +12,5 @@ df.drop_duplicates(inplace=True)
 # Save the DataFrame back to a CSV file
 df.to_csv('cleaned_groceries.csv', index=False)
 
-class ShoppinpCart:
+class ShoppingCart:
     "Class that manages a persons shopping cart based on their budget with additional features"
