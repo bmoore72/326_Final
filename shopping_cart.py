@@ -7,7 +7,7 @@ import pandas as pd
 df = pd.read_csv('Groceries_dataset.csv')
 
 # Remove duplicate rows
-groceries = df.drop_duplicates()
+df.drop_duplicates(inplace=True)
 
 # Save the DataFrame back to a CSV file
-groceries.to_csv('new_list_dataset.csv', index=False)
+df.to_csv('your_file.csv', index=False)
