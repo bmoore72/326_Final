@@ -25,9 +25,19 @@ class ShoppingCart:
         budget: the persons budget they are following
         """
         
-        self.grocery_items_df = grocery_item_df
+        self.grocery_item_df = grocery_item_df
         self.budget = budget
         self.cart = []
         self.price_total = 0.0
         self.wish_list = []
+
+    def add_item(self, item_name):
+        """
+        
+        """
+        row = self.grocery_item_df[self.grocery_item_df['item_description'].str.lower() == item_name.lower()]
+        
+        if row.empty:
+            print(f"{item_name} is out of stock. It will be added to your wish list.")
+            self.wish_list.append(item_name)
 
