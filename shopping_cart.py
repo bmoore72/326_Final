@@ -2,6 +2,7 @@
 #hi
 
 import pandas as pd 
+import random
 
 # Read the CSV file into a DataFrame
 #df = pd.read_csv('new_Groceries_dataset.csv')
@@ -42,14 +43,14 @@ class ShoppingCart:
         raises ValueError if adding an item exceeds their budget        
         """
 
-        row = self.grocery_item_df[self.grocery_item_df['item_description'].str.lower() == item_name.lower()]
+        row = self.grocery_item_df[self.grocery_item_df['item_Description'].str.lower() == item_name.lower()]
 
         if row.empty:
-            print(f"{item_name} is out of stock. It will be added to your wish list.")
+            print(f"{item_name} is out of stock. It will be added to your wishlist.")
             self.wish_list.append(item_name)
 
 
-        price = row.loc['Price']
+        price = row.iloc[0]['Price']
 
         if self.price_total + price > self.budget:
             raise ValueError(f"Can not add {item_name} - You are over budget")
@@ -57,13 +58,24 @@ class ShoppingCart:
         self.cart.append((item_name, price))
         self.price_total += price
 
+    def coupon(self):
+        """
+        Applies a random discount between 5% and 30%.
+    
+        returns discount
+        
+        """
+        percent = random.randint(5, 30)
+        discount = self.price_total * (percent / 100)
+        self.price_total -= discount
+
+        print(f"A {percent}% coupon has been applied to your total")
+
+        return discount
+
 
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
-    # Load the grocery items with prices
-    try:
-        grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
-        
         # Ask for budget
         while True:
             try:
