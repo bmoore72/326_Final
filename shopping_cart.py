@@ -2,6 +2,7 @@
 #hi
 
 import pandas as pd 
+import random
 
 # Read the CSV file into a DataFrame
 #df = pd.read_csv('new_Groceries_dataset.csv')
@@ -42,38 +43,77 @@ class ShoppingCart:
         raises ValueError if adding an item exceeds their budget        
         """
 
-        row = self.grocery_item_df[self.grocery_item_df['item_description'].str.lower() == item_name.lower()]
+        row = self.grocery_item_df[self.grocery_item_df['item_Description'].str.lower() == item_name.lower()]
 
         if row.empty:
-            print(f"{item_name} is out of stock. It will be added to your wish list.")
+            print(f"{item_name} is out of stock. It will be added to your wishlist.")
             self.wish_list.append(item_name)
             return
 
-        price = row['Price'].values[0]
+    price = row['Price'].values[0]
 
-        if self.price_total + price > self.budget:
+    if self.price_total + price > self.budget:
             raise ValueError(f"Can not add {item_name} - You are over budget")
 
-        self.cart.append((item_name, price))
-        self.price_total += price
+    self.cart.append((item_name, price))
+    self.price_total += price
 
+    def coupon(self):
+        """
+        Applies a random discount between 5% and 30%.
+    
+        returns discount
+        
+        """
+        percent = random.randint(5, 30)
+        discount = self.price_total * (percent / 100)
+        self.price_total -= discount
+
+        print(f"A {percent}% coupon has been applied to your total")
+
+        return discount
+    
+    def remove(self, item_name):
+        """
+        removes item from the cart if it exists in the cart
+        if it does not exist, it raises an error
+
+        item_name: name of the item to remove
+        """
+        for item in self.cart:
+            if item[0].lower() == item_name.lower():
+                self.cart.remove(item)
+                self.price_total -= item[1]
+                print(f"{item_name} has been removed from your cart.")
+                return
+
+        raise ValueError(f"{item_name} is not in your cart.")
+
+    def view_cart(self):
+        """
+        Displays all items in the cart with their prices and the total.
+        Offers checkout option if the cart is not empty.
+        """
+        # Check if cart is empty
+        if not self.cart:
+            print("Your cart is empty.")
+            return
+        
+        # Display cart contents    
+        print("Your cart contains the following items:")
+        
+        # Loop through each item and display its name and price
+        for item, price in self.cart:
+            print(f"{item}: ${price:.2f}")
+        
+        # Display total price and remaining budget
+        print(f"Total: ${self.price_total:.2f}")
+        print(f"Remaining budget: ${self.budget - self.price_total:.2f}")
+        
+        # Ask if user wants to checkout and process their response
+        checkout_choice = input("\nWould you like to checkout now? (y/n): ")
+        if checkout_choice.lower() == 'y':
+            self.checkout()
 
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
-    # Load the grocery items with prices
-    try:
-        grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
-        
-        # Ask for budget
-        while True:
-            try:
-                budget = float(input("Enter your shopping budget: $"))
-                if budget <= 0:
-                    print("Budget must be greater than zero.")
-                    continue
-                break
-            except ValueError:
-                print("Please enter a valid number for your budget.")
-        
-        # Create a shopping cart with the user's budget
-        cart = ShoppingCart(grocery_item_df, budget)
