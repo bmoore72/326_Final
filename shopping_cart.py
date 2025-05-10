@@ -126,4 +126,7 @@ if __name__ == "__main__":
             if budget <= 0:
                 print("Invalid Entry. Budget must be greater than 0.")
                 continue
+            break
+        except ValueError:
+            print ("Please enter a valid amount for your budget.")
             
