@@ -47,9 +47,9 @@ class ShoppingCart:
         if row.empty:
             print(f"{item_name} is out of stock. It will be added to your wish list.")
             self.wish_list.append(item_name)
+            return
 
-
-        price = row.loc['Price']
+        price = row['Price'].values[0]
 
         if self.price_total + price > self.budget:
             raise ValueError(f"Can not add {item_name} - You are over budget")
