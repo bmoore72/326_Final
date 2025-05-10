@@ -117,3 +117,7 @@ class ShoppingCart:
 
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
+    try:
+        grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv') # get grocery items with prices
+        
+    
