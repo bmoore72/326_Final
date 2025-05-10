@@ -123,4 +123,7 @@ if __name__ == "__main__":
     while True: 
         try: 
             budget = float(input("Please eneter your budget:$"))
-    
+            if budget <= 0:
+                print("Invalid Entry. Budget must be greater than 0.")
+                continue
+            
