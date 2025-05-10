@@ -129,7 +129,9 @@ if __name__ == "__main__":
             break
         except ValueError:
             print ("Please enter a valid amount for your budget.")
-            
-    cart = ShoppingCart(grocery_item_df, budget)
     
+    cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
+
     
+    while True: 
+        item = input("Enter an item to add to your cart (or type 'done' to finish)")
