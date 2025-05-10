@@ -142,3 +142,7 @@ if __name__ == "__main__":
             print(f"{item} add! Current Total: ${cart.price_total:.2f}")
         except ValueError: 
             print("Invalid entry. Please try again.")
+            
+        print("\nFinal Cart Summary:")
+        for i, (item, price) in enumerate(cart.cart, 1): 
+            print
