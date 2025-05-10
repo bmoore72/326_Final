@@ -89,7 +89,7 @@ class ShoppingCart:
 
         raise ValueError(f"{item_name} is not in your cart.")
     
-    def remaining_budget(self):
+    def remaining_budget(self): # Displays how much money user has left to spend
         return self.budget - self.price_total
 
     def view_cart(self):
@@ -117,7 +117,12 @@ class ShoppingCart:
         checkout_choice = input("\nWould you like to checkout now? (y/n): ")
         if checkout_choice.lower() == 'y':
             self.checkout()
-
+            
+    def clear_cart(self): # removes all items from cart
+        self.cart = [] 
+        self.price_total = 0.0 
+        print("Your cart has been cleared")
+        
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
     try:
