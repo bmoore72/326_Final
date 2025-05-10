@@ -89,7 +89,32 @@ class ShoppingCart:
 
         raise ValueError(f"{item_name} is not in your cart.")
 
+    def view_cart(self):
+        """
+        Displays all items in the cart with their prices and the total.
+        Offers checkout option if the cart is not empty.
+        """
+        # Check if cart is empty
+        if not self.cart:
+            print("Your cart is empty.")
+            return
+        
+        # Display cart contents    
+        print("Your cart contains the following items:")
+        
+        # Loop through each item and display its name and price
+        for item, price in self.cart:
+            print(f"{item}: ${price:.2f}")
+        
+        # Display total price and remaining budget
+        print(f"Total: ${self.price_total:.2f}")
+        print(f"Remaining budget: ${self.budget - self.price_total:.2f}")
+        
+        # Ask if user wants to checkout and process their response
+        checkout_choice = input("\nWould you like to checkout now? (y/n): ")
+        if checkout_choice.lower() == 'y':
+            self.checkout()
 
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
-   main()
+   
