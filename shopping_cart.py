@@ -88,6 +88,9 @@ class ShoppingCart:
                 return
 
         raise ValueError(f"{item_name} is not in your cart.")
+    
+    def remaining_budget(self):
+        return self.budget - self.price_total
 
     def view_cart(self):
         """
@@ -122,7 +125,7 @@ if __name__ == "__main__":
         
     while True: 
         try: 
-            budget = float(input("Please eneter your budget:$"))
+            budget = float(input("Please enter your budget:$"))
             if budget <= 0:
                 print("Invalid Entry. Budget must be greater than 0.")
                 continue
