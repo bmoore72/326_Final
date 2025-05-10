@@ -72,6 +72,22 @@ class ShoppingCart:
         print(f"A {percent}% coupon has been applied to your total")
 
         return discount
+    
+    def remove(self, item_name):
+        """
+        removes item from the cart if it exists in the cart
+        if it does not exist, it raises an error
+
+        item_name: name of the item to remove
+        """
+        for item in self.cart:
+            if item[0].lower() == item_name.lower():
+                self.cart.remove(item)
+                self.price_total -= item[1]
+                print(f"{item_name} has been removed from your cart.")
+                return
+
+        raise ValueError(f"{item_name} is not in your cart.")
 
 
 # interactive, user is speaking with program to add itmes to cart 
