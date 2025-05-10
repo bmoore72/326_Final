@@ -128,15 +128,17 @@ if __name__ == "__main__":
     try:
         grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv') # get grocery items with prices
         
-    while True: 
-        try: 
-            budget = float(input("Please enter your budget:$"))
-            if budget <= 0:
-                print("Invalid Entry. Budget must be greater than 0.")
-                continue
-            break
-        except ValueError:
-            print ("Please enter a valid amount for your budget.")
+        while True: 
+            try: 
+                budget = float(input("Please enter your budget:$"))
+                if budget <= 0:
+                    print("Invalid Entry. Budget must be greater than 0.")
+                    continue
+                break
+            except ValueError:
+                print ("Please enter a valid amount for your budget.")
+    except FileNotFoundError:
+        print("Error: 'clean_grocery_Items_with_Prices.csv' not found")
     
     cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
 
