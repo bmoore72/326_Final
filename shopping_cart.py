@@ -130,3 +130,6 @@ if __name__ == "__main__":
         except ValueError:
             print ("Please enter a valid amount for your budget.")
             
+    cart = ShoppingCart(grocery_item_df, budget)
+    
+    
