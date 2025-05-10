@@ -92,16 +92,4 @@ class ShoppingCart:
 
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
-        # Ask for budget
-        while True:
-            try:
-                budget = float(input("Enter your shopping budget: $"))
-                if budget <= 0:
-                    print("Budget must be greater than zero.")
-                    continue
-                break
-            except ValueError:
-                print("Please enter a valid number for your budget.")
-        
-        # Create a shopping cart with the user's budget
-        cart = ShoppingCart(grocery_item_df, budget)
+   main()
