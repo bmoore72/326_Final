@@ -135,3 +135,6 @@ if __name__ == "__main__":
     
     while True: 
         item = input("Enter an item to add to your cart (or type 'done' to finish)")
+        if item.lower() == 'done': 
+            
+        
