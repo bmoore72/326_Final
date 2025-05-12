@@ -121,7 +121,7 @@ class ShoppingCart:
     def clear_cart(self): # removes all items from cart
         self.cart = [] 
         self.price_total = 0.0 
-        print("Your cart has been cleared")
+        print("Your cart has been cleared") # can  you see this
         
 # interactive, user is speaking with program to add itmes to cart 
 if __name__ == "__main__":
