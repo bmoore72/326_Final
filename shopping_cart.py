@@ -44,7 +44,7 @@ class ShoppingCart:
         raises ValueError if adding an item exceeds their budget        
         """
 
-        row = self.grocery_item_df[self.grocery_item_df['item_Description'].str.lower() == item_name.lower()]
+        row = self.grocery_item_df[self.grocery_item_df['itemDescription'].str.lower() == item_name.lower()]
 
         if row.empty:
             print(f"{item_name} is out of stock. It will be added to your wishlist.")
