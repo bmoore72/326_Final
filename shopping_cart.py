@@ -51,13 +51,13 @@ class ShoppingCart:
             self.wish_list.append(item_name)
             return
 
-    price = row['Price'].values[0]
+        price = row['Price'].values[0]
 
-    if self.price_total + price > self.budget:
+        if self.price_total + price > self.budget:
             raise ValueError(f"Can not add {item_name} - You are over budget")
 
-    self.cart.append((item_name, price))
-    self.price_total += price
+        self.cart.append((item_name, price))
+        self.price_total += price
 
     def coupon(self):
         """
