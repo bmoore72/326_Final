@@ -4,6 +4,7 @@
 import pandas as pd 
 import random
 
+
 # Read the CSV file into a DataFrame
 #df = pd.read_csv('new_Groceries_dataset.csv')
 
@@ -130,6 +131,36 @@ class ShoppingCart:
         self.cart = [] 
         self.price_total = 0.0 
         print("Your cart has been cleared") # can  you see this
+
+    
+    
+    def checkout(self):
+        """
+        Processes the checkout by displaying the final cart summary and confirming the purchase.
+        """
+        # Check if cart is empty
+        if not self.cart:
+            print("Your cart is empty. Cannot proceed to checkout.")
+            return
+        
+        # Display final cart summary
+        print("\nFinal Cart Summary:")
+        for item, price in self.cart:
+            print(f"{item}: ${price:.2f}")
+        
+        print(f"Total: ${self.price_total:.2f}")
+
+        
+        # Confirm purchase
+        confirm = input("Do you want to confirm your purchase? (y/n): ")
+        if confirm.lower() == 'y':
+            print("Thank you for your purchase!")
+            self.clear_cart()
+        else:
+            print("Purchase cancelled.")
+
+        
+        
         
 # interactive, user is speaking with program to add itmes to cart 
 def main():
