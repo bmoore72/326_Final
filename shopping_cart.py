@@ -89,7 +89,12 @@ class ShoppingCart:
 
         raise ValueError(f"{item_name} is not in your cart.")
     
-    def remaining_budget(self): # Displays how much money user has left to spend
+    def remaining_budget(self): 
+        """
+        Displays how much money user has left to spend
+
+        returns money left
+        """
         return self.budget - self.price_total
 
     def view_cart(self):
@@ -118,13 +123,19 @@ class ShoppingCart:
         if checkout_choice.lower() == 'y':
             self.checkout()
             
-    def clear_cart(self): # removes all items from cart
+    def clear_cart(self): 
+        """
+        removes all items from cart
+        """
         self.cart = [] 
         self.price_total = 0.0 
         print("Your cart has been cleared")
         
 # interactive, user is speaking with program to add itmes to cart 
-if __name__ == "__main__":
+def main():
+    """
+    
+    """
     try:
         grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv') # get grocery items with prices
         
@@ -142,7 +153,6 @@ if __name__ == "__main__":
     
     cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
 
-    
     while True: 
         item = input("Enter an item to add to your cart (or type 'done' to finish)")
         if item.lower() == 'done': 
@@ -155,4 +165,10 @@ if __name__ == "__main__":
             
         print("\nFinal Cart Summary:")
         for i, (item, price) in enumerate(cart.cart, 1): 
-            print
+            print(f"{i}. {item}: ${price:.2f}")
+        print(f"Total: ${cart.price_total:.2f}")
+        print(f"Remaining Budget: ${cart.remaining_budget():.2f}")
+
+
+if __name__ == "__main__":
+    main()
