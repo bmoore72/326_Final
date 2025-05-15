@@ -206,7 +206,7 @@ def main():
             try:
                 cart.add_item(command)
             except ValueError as e:
-                print("You don't have enough money in your budget.")
+                print("You don't have enough money in your budget for this item.")
     
         
 
