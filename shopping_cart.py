@@ -160,7 +160,10 @@ class ShoppingCart:
 # interactive, user is speaking with program to add itmes to cart 
 def main():
     """
+    Main function to run the shopping cart application.
     
+    This function handles the interactive part of the program, allowing users
+    to enter their budget and issue commands to interact with their shopping cart.
     """
     try:
         budget = pd.read_csv('clean_grocery_Items_with_Prices.csv') # get grocery items with prices
