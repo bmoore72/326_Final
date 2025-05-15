@@ -19,7 +19,7 @@ grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
 class ShoppingCart:
     "Class that manages a persons shopping cart based on their budget with additional features"
 
-    def __init__(self, grocery_item_df, budget):
+    def __init__(self, grocery_item_df,budget):
         """
         initialize shopping cart class with item dataframe and budget 
 
@@ -163,7 +163,7 @@ def main():
     
     """
     try:
-        grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv') # get grocery items with prices
+        budget = pd.read_csv('clean_grocery_Items_with_Prices.csv') # get grocery items with prices
         
         while True: 
             try: 
@@ -177,27 +177,23 @@ def main():
     except FileNotFoundError:
         print("Error: 'clean_grocery_Items_with_Prices.csv' not found")
  
-
-    
-                
-cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
     
     
 # Main shopping loop
-print(f"\nYour budget is ${budget:.2f}. Start adding items to your cart.")
-print("You can type 'view' to see your cart, 'remove' to remove an item,")
-print("'coupon' to apply a discount, or 'done' to finish shopping.\n")
-    
-while True: 
-        
-    command = input("Enter an item: ")
-    try: 
-        cart.add_item(command)
-    except ValueError as error:
-        print(error)
-        
-    if 'clean_grocery_Items_with_Prices.csv'.empty:
-        print(f"{grocery_item_df} not found. Please select a new item.")
+    print(f"\nYour budget is ${budget:.2f}. Start adding items to your cart.")
+    print("You can type 'view' to see your cart, 'remove' to remove an item,")
+    print("'coupon' to apply a discount, or 'done' to finish shopping.\n")
+
+    cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
+
+    while True:
+        command = input("Enter item or command: ").strip().lower()
+        if command == "checkout":
+            break
+        try:
+            cart.add_item(command)
+        except ValueError as e:
+            print(e)
     
             
             
