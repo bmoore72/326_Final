@@ -189,14 +189,25 @@ def main():
     while True:
         command = input("Enter item or command: ").strip().lower()
         if command == "checkout":
+            cart.checkout()
             break
-        try:
-            cart.add_item(command)
-        except ValueError as e:
-            print(e)
+        elif command == "view": 
+            cart.view_cart()
+        
+        elif command == "remove":
+            item = input("Enter the item to remove:")
+            try: 
+                cart.remove(item)
+            except ValueError as e: 
+                print('item not found')
+        elif command == "coupon":
+            cart.coupon()
+        else:
+            try:
+                cart.add_item(command)
+            except ValueError as e:
+                print("You don't have enough money in your budget.")
     
-            
-            
         
 
 if __name__ == "__main__":
