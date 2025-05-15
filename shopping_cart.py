@@ -178,23 +178,15 @@ def main():
         print("Error: 'clean_grocery_Items_with_Prices.csv' not found")
     
     cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
-
+    
+    # Main shopping loop
+    print(f"\nYour budget is ${budget:.2f}. Start adding items to your cart.")
+    print("You can type 'view' to see your cart, 'remove' to remove an item,")
+    print("'coupon' to apply a discount, or 'done' to finish shopping.\n")
+    
     while True: 
-        item = input("Enter an item to add to your cart (or type 'done' to finish)")
-        if item.lower() == 'done': 
-            break 
-        try:
-            cart.add_item(item)
-            print(f"{item} add! Current Total: ${cart.price_total:.2f}")
-        except ValueError: 
-            print("Invalid entry. Please try again.")
-            
-        print("\nFinal Cart Summary:")
-        for i, (item, price) in enumerate(cart.cart, 1): 
-            print(f"{i}. {item}: ${price:.2f}")
-        print(f"Total: ${cart.price_total:.2f}")
-        print(f"Remaining Budget: ${cart.remaining_budget():.2f}")
-
+        command = input("Enter an item to add to your cart (or a command): ")
 
 if __name__ == "__main__":
     main()
+    
