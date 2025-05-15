@@ -178,11 +178,10 @@ def main():
         print("Error: 'clean_grocery_Items_with_Prices.csv' not found")
  
     
-    
 # Main shopping loop
     print(f"\nYour budget is ${budget:.2f}. Start adding items to your cart.")
     print("You can type 'view' to see your cart, 'remove' to remove an item,")
-    print("'coupon' to apply a discount, or 'done' to finish shopping.\n")
+    print("'coupon' to apply a discount, or 'checkout' to finish shopping.\n")
 
     cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
 
