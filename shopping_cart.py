@@ -177,6 +177,18 @@ def main():
     except FileNotFoundError:
         print("Error: 'clean_grocery_Items_with_Prices.csv' not found")
     
+        while True:
+            try:
+                grocery_item_df = (input("Enter an item to add to your cart (or a command): "))
+                if grocery_item_df !=  ('Groceries_dataset.csv'):
+                    print("That item is out of stock. Please add a new item to the cart.") 
+                    
+            except FileNotFoundError: 
+                print("Error: 'Groceries_dataset.csv'")
+                
+                
+        
+        
     cart = ShoppingCart(grocery_item_df, budget)  # create shoppign cart with users budget        
     
     # Main shopping loop
