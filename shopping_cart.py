@@ -1,6 +1,3 @@
-# repo 
-#hi
-
 import pandas as pd 
 import random
 
