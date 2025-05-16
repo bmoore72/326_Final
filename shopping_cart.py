@@ -55,9 +55,11 @@ class ShoppingCart:
         price = row['Price'].values[0]
         # Check if the item is within budget
         if self.price_total + price > self.budget:
+            # raise an error if the item is not in budget
             raise ValueError(f"Can not add {item_name} - You are over budget")
-
+        # Add the item to the cart
         self.cart.append((item_name, price))
+        # update the total price
         self.price_total += price
 
     def coupon(self):
