@@ -157,7 +157,6 @@ class ShoppingCart:
         else:
             print("Purchase cancelled.")
         
-
 # interactive, user is speaking with program to add itmes to cart 
 def main():
     """
@@ -180,8 +179,6 @@ def main():
                 print ("Please enter a valid amount for your budget.")
     except FileNotFoundError:
         print("Error: 'clean_grocery_Items_with_Prices.csv' not found")
- 
-    
     
 # Main shopping loop
     print(f"\nYour budget is ${budget:.2f}. Start adding items to your cart.")
@@ -222,9 +219,7 @@ def main():
                 # raises error if there is no money 
             except ValueError as e:
                 print("You don't have enough money in your budget for this item.")
-    
-        
-
+    # call main
 if __name__ == "__main__":
     main()
     
