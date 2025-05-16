@@ -11,14 +11,11 @@ import random
 # Save the DataFrame back to a CSV file
 #df.to_csv('cleaned_groceries.csv', index=False)
 
-# Read the CSV file containing grocery items and prices into a DataFrame
-
 grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
 
-# Define a class to manage the shopping cart based on a user's budget
 class ShoppingCart:
     "Class that manages a persons shopping cart based on their budget with additional features"
-    # shopping cart class that allows users to add items, remove items, apply coupons, and checkout.
+
     def __init__(self, grocery_item_df,budget):
         """
         initialize shopping cart class with item dataframe and budget 
@@ -26,14 +23,14 @@ class ShoppingCart:
         grocery_item_df: items in dataframe with their prices
         budget: the persons budget they are following
         """
-        # check if the budget is valid
+        
         self.grocery_item_df = grocery_item_df
         self.budget = budget
         self.cart = []
         self.wish_list = []
         self.price_total = 0.0
        
-    # add_item method to add items to the cart
+
     def add_item(self, item_name):
         """
         adds item to the cart if it's in stock(in csv file) and within their budget
@@ -43,25 +40,22 @@ class ShoppingCart:
 
         raises ValueError if adding an item exceeds their budget        
         """
-        # Check if the item is in stock
+
         row = self.grocery_item_df[self.grocery_item_df['itemDescription'].str.lower() == item_name.lower()]
 
-        # If the item is not found, add it to the wishlist
         if row.empty:
             print(f"{item_name} is out of stock. It will be added to your wishlist.")
             self.wish_list.append(item_name)
             return
-        # If the item is found, get its price
-        price = row['Price'].values[0]
-        # Check if the item is within budget
-        if self.price_total + price > self.budget:
-            # raise an error if the item is not in budget
-            raise ValueError(f"Can not add {item_name} - You are over budget")
-        # Add the item to the cart
-        self.cart.append((item_name, price))
-        # update the total price
-        self.price_total += price
 
+        price = row['Price'].values[0]
+
+        if self.price_total + price > self.budget:
+            raise ValueError(f"Can not add {item_name} - You are over budget")
+
+        self.cart.append((item_name, price))
+        self.price_total += price
+    # Applies a discout
     def coupon(self):
         """
         Applies a random discount between 5% and 30%.
@@ -69,17 +63,14 @@ class ShoppingCart:
         returns discount
         
         """
-        # choose random discount between 5% and 30%
         percent = random.randint(5, 30)
-        # set the discount
         discount = self.price_total * (percent / 100)
-        # adjust the total price with discount applied
         self.price_total -= discount
-        # display the discount
+
         print(f"A {percent}% coupon has been applied to your total")
 
         return discount
-    
+    # removes and items from the users cart
     def remove(self, item_name):
         """
         removes item from the cart if it exists in the cart
@@ -95,7 +86,7 @@ class ShoppingCart:
                 return
 
         raise ValueError(f"{item_name} is not in your cart.")
-    
+    # Displays users remaining balance after adding 'x' number of items to their
     def remaining_budget(self): 
         """
         Displays how much money user has left to spend
@@ -130,13 +121,15 @@ class ShoppingCart:
         if checkout_choice.lower() == 'y':
             self.checkout()
             
+    # Allows user to clear their cart       
     def clear_cart(self): 
         """
         removes all items from cart
         """
         self.cart = [] 
         self.price_total = 0.0 
-        print("Your cart has been cleared") # can  you see this
+        #informs the user their cart has been cleared 
+        print("Your cart has been cleared") 
     
     def checkout(self):
         """
@@ -216,7 +209,23 @@ def main():
             cart.coupon()
         else:
             try:
-        # allows user to add item to the cart
+                '''
+                PROBLEM:
+                fruit/vegetable juice -> 2.49
+                => EITHER "fruit" OR "vegetable" as an input should be registered and cost 2.49
+                need some way to map "fruit" to the cost of "fruit/vegetable"
+                
+                SUGGESTED FIX: 
+                OPTION 1: modify the pandas dataframe directly to split items with "/" in description into separate rows
+                OPTION 2: read the df into a dictionary. { itemDescription:string -> price:float }
+                          loop through all keys and find items with "/" in description. modify the dictionary to store the two
+                          different items.
+                
+                PROS/CONS:
+                Option 1 is easier if you are more familiar with pandas and are comforatble modifying the dataframe. Option 2 is more 
+                resource intensive but is easier to code.
+                '''
+                # allows user to add item to the cart
                 cart.add_item(command)
             except ValueError as e:
                 print("You don't have enough money in your budget for this item.")
