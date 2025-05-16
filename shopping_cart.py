@@ -186,7 +186,7 @@ def main():
 # Main shopping loop
     print(f"\nYour budget is ${budget:.2f}. Start adding items to your cart.")
     print("You can type 'view' to see your cart, 'remove' to remove an item,")
-    print("'coupon' to apply a discount, or 'done' to finish shopping.\n")
+    print("'coupon' to apply a discount, or 'checkout' to finish shopping.\n")
 
     cart = ShoppingCart(grocery_item_df, budget)  # create shopping cart with users budget        
 
@@ -195,7 +195,7 @@ def main():
         command = input("Enter item or command: ").strip().lower()
         if command == "checkout":
             cart.checkout()
-            sys.exit()
+            sys.exit(0)
         # displays itesm in users cart 
         elif command == "view": 
             cart.view_cart()
