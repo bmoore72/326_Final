@@ -69,10 +69,13 @@ class ShoppingCart:
         returns discount
         
         """
+        # choose random discount between 5% and 30%
         percent = random.randint(5, 30)
+        # set the discount
         discount = self.price_total * (percent / 100)
+        # adjust the total price with discount applied
         self.price_total -= discount
-
+        # display the discount
         print(f"A {percent}% coupon has been applied to your total")
 
         return discount
