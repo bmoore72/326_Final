@@ -1,5 +1,6 @@
 import pandas as pd 
 import random
+import sys
 
 
 # Read the CSV file into a DataFrame
@@ -144,13 +145,14 @@ class ShoppingCart:
         print("\nFinal Cart Summary:")
         for item, price in self.cart:
             print(f"{item}: ${price:.2f}")
-        
+        # print total cost of cart
         print(f"Total: ${self.price_total:.2f}")
         
         # Confirm purchase
         confirm = input("Do you want to confirm your purchase? (y/n): ")
         if confirm.lower() == 'y':
             print("Thank you for your purchase!")
+            # clear cart 
             self.clear_cart()
         else:
             print("Purchase cancelled.")
@@ -193,7 +195,7 @@ def main():
         command = input("Enter item or command: ").strip().lower()
         if command == "checkout":
             cart.checkout()
-            break
+            sys.exit()
         # displays itesm in users cart 
         elif command == "view": 
             cart.view_cart()
