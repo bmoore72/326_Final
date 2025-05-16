@@ -2,7 +2,6 @@ import pandas as pd
 import random
 import sys
 
-
 grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
 
 class ShoppingCart:
@@ -116,7 +115,7 @@ class ShoppingCart:
     # Allows user to clear their cart       
     def clear_cart(self): 
         """
-        removes all items from cart
+        Clears the cart and resets the total price.
         """
         self.cart = [] 
         self.price_total = 0.0 
