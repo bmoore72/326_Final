@@ -11,11 +11,14 @@ import random
 # Save the DataFrame back to a CSV file
 #df.to_csv('cleaned_groceries.csv', index=False)
 
+# Read the CSV file containing grocery items and prices into a DataFrame
+
 grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
 
+# Define a class to manage the shopping cart based on a user's budget
 class ShoppingCart:
     "Class that manages a persons shopping cart based on their budget with additional features"
-
+    # shopping cart class that allows users to add items, remove items, apply coupons, and checkout.
     def __init__(self, grocery_item_df,budget):
         """
         initialize shopping cart class with item dataframe and budget 
@@ -23,14 +26,14 @@ class ShoppingCart:
         grocery_item_df: items in dataframe with their prices
         budget: the persons budget they are following
         """
-        
+        # check if the budget is valid
         self.grocery_item_df = grocery_item_df
         self.budget = budget
         self.cart = []
         self.wish_list = []
         self.price_total = 0.0
        
-
+    # add_item method to add items to the cart
     def add_item(self, item_name):
         """
         adds item to the cart if it's in stock(in csv file) and within their budget
@@ -40,7 +43,7 @@ class ShoppingCart:
 
         raises ValueError if adding an item exceeds their budget        
         """
-
+        # Check if the item is in stock
         row = self.grocery_item_df[self.grocery_item_df['itemDescription'].str.lower() == item_name.lower()]
 
         if row.empty:
