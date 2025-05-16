@@ -46,13 +46,14 @@ class ShoppingCart:
         # Check if the item is in stock
         row = self.grocery_item_df[self.grocery_item_df['itemDescription'].str.lower() == item_name.lower()]
 
+        # If the item is not found, add it to the wishlist
         if row.empty:
             print(f"{item_name} is out of stock. It will be added to your wishlist.")
             self.wish_list.append(item_name)
             return
-
+        # If the item is found, get its price
         price = row['Price'].values[0]
-
+        # Check if the item is within budget
         if self.price_total + price > self.budget:
             raise ValueError(f"Can not add {item_name} - You are over budget")
 
