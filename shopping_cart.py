@@ -3,15 +3,6 @@ import random
 import sys
 
 
-# Read the CSV file into a DataFrame
-#df = pd.read_csv('new_Groceries_dataset.csv')
-
-# Remove duplicate rows
-#df.drop_duplicates(inplace=True)
-
-# Save the DataFrame back to a CSV file
-#df.to_csv('cleaned_groceries.csv', index=False)
-
 grocery_item_df = pd.read_csv('clean_grocery_Items_with_Prices.csv')
 
 class ShoppingCart:
