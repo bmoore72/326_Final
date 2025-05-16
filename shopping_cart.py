@@ -216,22 +216,7 @@ def main():
             cart.coupon()
         else:
             try:
-                '''
-                PROBLEM:
-                fruit/vegetable juice -> 2.49
-                => EITHER "fruit" OR "vegetable" as an input should be registered and cost 2.49
-                need some way to map "fruit" to the cost of "fruit/vegetable"
-                
-                SUGGESTED FIX: 
-                OPTION 1: modify the pandas dataframe directly to split items with "/" in description into separate rows
-                OPTION 2: read the df into a dictionary. { itemDescription:string -> price:float }
-                          loop through all keys and find items with "/" in description. modify the dictionary to store the two
-                          different items.
-                
-                PROS/CONS:
-                Option 1 is easier if you are more familiar with pandas and are comforatble modifying the dataframe. Option 2 is more 
-                resource intensive but is easier to code.
-                '''
+               
                 # allows user to add item to the cart
                 cart.add_item(command)
                 # raises error if there is no money 
