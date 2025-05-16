@@ -194,7 +194,12 @@ def main():
         # navigates user to checkout
         command = input("Enter item or command: ").strip().lower()
         if command == "checkout":
-            cart.checkout()
+            try:
+                cart.checkout()
+                break
+            # break loop, terminate program when checkout is complete
+            except ValueError as e:
+                cart.checkout()
             sys.exit(0)
         # displays itesm in users cart 
         elif command == "view": 
@@ -229,6 +234,7 @@ def main():
                 '''
                 # allows user to add item to the cart
                 cart.add_item(command)
+                # raises error if there is no money 
             except ValueError as e:
                 print("You don't have enough money in your budget for this item.")
     
